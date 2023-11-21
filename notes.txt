@@ -1,0 +1,56 @@
+https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/
+
+https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+
+
+nixos-install --no-root-passwd
+
+
+nix-env vs config file?
+
+#install software for just this session
+nix-env -iA
+
+#list installed packaged
+nix-env -q
+
+#delete software
+nix-env --uninstall
+
+#check overlay wiki
+overlays let you override install variables, like pulling a more recent tarball from a different source than the maintainers repo
+
+#upgrades
+nix-channel --update
+sudo nixos-rebuild switch --upgrade
+
+
+#update after config editing
+sudo nixos-rebuild switch
+
+#prune install
+sudo nix-collect-garbage -d
+#delete stuff
+sudo nix-collect-garbage --delete-old
+#what generations do we have
+nix-env --list-generations
+#delete old generations over 14 days old
+nix-env --delete-generations 14d
+
+
+sudo nixos-rebuild switch --flake .#nixneko
+nix flake update
+https://www.youtube.com/watch?v=AGVXJ-TIv3Y
+
+
+#install from iso with flake
+sudo su
+nix-env -iA nixos.git
+git clone <repo url> /mnt/etc/nixos/
+nixos-install --flake .#<hostname>
+reboot
+
+
+https://guekka.github.io/nixos-server-1/
+https://nixos.wiki/wiki/Impermanence
+https://sr.ht/~misterio/nix-config/
